@@ -23,13 +23,18 @@ let movies = [
   {
     name: 'Bee Movie', 
     year: '2007', 
-    genre: 'Comedy', 
+    genre: {
+      name: 'Comedy',
+      description: 'Comedy films are "make em laugh" films designed to elicit laughter from the audience. Comedies are light-hearted dramas, crafted to amuse, entertain, and provoke enjoyment. '
+    }, 
     director: {
       name: 'Simon', 
       birth: '1968',
-      death: '-'
+      death: '-',
+      bio: ''
     },
-    imgURL: 'https://resizing.flixster.com/4cj6h4Pepi_2UkqtYCe0rB7pgW0=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzA0MzljODE3LTgzMDMtNGRiOS1iOTM0LTM1ODk1ODMwNDIyOC53ZWJw'
+    imgURL: 'https://resizing.flixster.com/4cj6h4Pepi_2UkqtYCe0rB7pgW0=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzA0MzljODE3LTgzMDMtNGRiOS1iOTM0LTM1ODk1ODMwNDIyOC53ZWJw',
+    featured: true
   }
 ];
 
@@ -53,7 +58,7 @@ app.get('/movies/:name', (req, res) => {
 
 //Responds with a json of all movies within specified genre (3)-
 app.get('/movies/genres/:genre', (req, res) => {
-  const genre = movies.find((movie) => movie.genre === req.params.genre);
+  const genre = movies.find((movie) => movie.genre.name === req.params.genre).genre;
 
   if (genre) {
     res.status(200).json(genre);

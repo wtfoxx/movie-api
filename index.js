@@ -11,6 +11,7 @@ let users =  [
   {
     username: 'lemon',
     email: 'lemoncakes@gmail.com',
+    password: 'ihatelemons',
     birthday: '12/09/1994',
     favorites: [
       'Bee Movie',
@@ -21,7 +22,7 @@ let users =  [
 ]
 let movies = [
   {
-    name: 'Bee Movie', 
+    title: 'Bee Movie', 
     year: '2007', 
     genre: {
       name: 'Comedy',
@@ -32,6 +33,9 @@ let movies = [
       birth: '1968',
       death: '-',
       bio: ''
+    },
+    actors: {
+
     },
     imgURL: 'https://resizing.flixster.com/4cj6h4Pepi_2UkqtYCe0rB7pgW0=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzA0MzljODE3LTgzMDMtNGRiOS1iOTM0LTM1ODk1ODMwNDIyOC53ZWJw',
     featured: true
@@ -50,9 +54,9 @@ app.get('/movies', (req, res) => {
 });
 
 //Responds with a json of the specific movie asked for (2)-
-app.get('/movies/:name', (req, res) => {
+app.get('/movies/:title', (req, res) => {
   res.json(movies.find((movie) => {
-    return movie.name === req.params.name
+    return movie.title === req.params.title
   }));
 });
 

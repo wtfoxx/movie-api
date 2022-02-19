@@ -37,27 +37,32 @@
       </tr>
       <tr>
         <td>Return data about a single movie by title to the user</td>
-        <td>/movies/[name]</td>
+        <td>/movies/[title]</td>
         <td>GET</td>
-        <td>:name</td>
+        <td>:title</td>
         <td>None</td>
         <td>A JSON object holding data about the selected movie containing description, genre, director and img URL. Example: 
           <pre>
             <code>
   {
-    name: 'Bee Movie', 
-    year: '2007', 
-    genre: {
-      name: 'Comedy',
+    Title: '', 
+    Description: '',
+    Year: '', 
+    Genre: {
+      name: '',
       description: ''
     } 
-    director: {
-      name: 'Simon J. Smith', 
-      birth: '1968',
-      death: '-'
+    Director: {
+      name: '', 
+      birth: '',
+      death: ''
       bio: ''
     },
-    imgURL: 'url'
+    Actors: {
+
+    }
+    ImagePath: ''
+    Featured: true
   }
             </code>
           </pre>
@@ -69,7 +74,16 @@
         <td>GET</td>
         <td>:genre</td>
         <td>None</td>
-        <td>A JSON object holding data about the selected genre</td>
+        <td>A JSON object holding data about the selected genre. Example:
+          <pre>
+            <code>
+  { 
+    name: 'Comedy', 
+    description: '', 
+  }
+            </code>
+          </pre>
+        </td>
       </tr>
       <tr>
         <td>Return data about a director (bio, birth year, death year) by name</td>
@@ -101,6 +115,7 @@
   { 
     "username": "lemon", 
     "email": "lemoncakes@gmail.com", 
+    "password": "ihatelemons"
     "birthday": "12/09/1994", 
     "favorites": [
       "Bee Movie", "Parent Trap"
@@ -116,6 +131,7 @@
     id: '1',
     username: 'lemon', 
     email: 'lemoncakes@gmail.com', 
+    password: 'ihatelemons'
     birthday: '12/09/1994', 
     favorites: [
       'Bee Movie', 'Parent Trap'
@@ -146,6 +162,7 @@
     id: '1',
     username: 'lime', 
     email: 'lemoncakes@gmail.com', 
+    password: 'ihatelemons'
     birthday: '12/09/1994', 
     favorites: [
       'Bee Movie', 'Parent Trap'

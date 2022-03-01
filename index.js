@@ -112,7 +112,7 @@ app.get('/movies/directors/:Name', passport.authenticate('jwt', { session: false
 app.post('/users', 
   //Validation logic for request
   [
-    check('Username', 'Username is required').isLength({ min: 5 }),
+    check('Username', 'Username is required and must be at least 5 characters long.').isLength({ min: 5 }),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
@@ -166,7 +166,7 @@ app.put('/users/:Username',
 $set:
     {
       Username: req.body.Username,
-      Password: hashedPassword,
+      Password: req.body.Password,
       Email: req.body.Email,
       Birthday: req.body.Birthday
     }

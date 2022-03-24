@@ -4,7 +4,7 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-// mongoose.connect('mongodb://localhost:27017/flexnitDB', { useNewUrlParser: true, useUnifiedTopology: true });
+ //mongoose.connect('mongodb://localhost:27017/flexnitDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -61,7 +61,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
 });
 
 // Gets a specific movie, by name (2)-
-app.get('/movies/:Movie', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
+app.get('/movies/:Movie', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({ Title: req.params.Movie })
   .then((movie) => {
     if (!movie) {
@@ -78,12 +78,12 @@ app.get('/movies/:Movie', /*passport.authenticate('jwt', { session: false }),*/ 
 
 // Gets all movies, by genre (3)-
 app.get('/movies/genres/:Genre', (req, res) => {
-  Movies.findOne({ 'Genre.Name': req.params.Genre })
-    .then((movie) => {
-      if (!movie) {
+  Movies.find({ 'Genre.Name': req.params.Genre })
+    .then((movies) => {
+      if (!movies) {
         res.status(404).send('Genre not found.');
       } else {
-        res.status(200).json(movie.Genre);
+        res.status(200).json(movies);
       }
     })
     .catch((err) => {
@@ -94,12 +94,12 @@ app.get('/movies/genres/:Genre', (req, res) => {
 
 // Gets information about director, by name (4)-
 app.get('/movies/directors/:Name', (req, res) => {
-  Movies.findOne({ 'Director.Name': req.params.Name })
-    .then((movie) => {
-      if (!movie) {
+  Movies.find({ 'Director.Name': req.params.Name })
+    .then((movies) => {
+      if (!movies) {
         res.status(404).send('Director not found.');
       } else {
-        res.status(200).json(movie.Director);
+        res.status(200).json(movies);
       }
     })
     .catch((err) => {

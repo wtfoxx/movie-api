@@ -21,7 +21,7 @@ const { check, validationResult } = require('express-validator');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://test.com']
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://test.com', 'https://flexnit.netlify.app']
 
 const cors = require('cors');
 app.use(cors({

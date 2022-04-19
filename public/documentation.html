@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Movie API Documentation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+ 
+  <style>
+    pre {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+         }
+  </style>
+
+</head>
+
+<body class="container">
+  <h1 class="h1">Movie API</h1>
+
+  <p>
+    <mark>This is an API that stores movies and information on said movies for external use.</mark>
+  </p>
+
+
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Business Logic</th>
+        <th scope="col">URL</th>
+        <th scope="col">HTTP Method</th>
+        <th scope="col">Query parameters</th>
+        <th scope="col">Request body data format</th>
+        <th scope="col">Response body data format</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Return a list of ALL movies to the user</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>None</td>
+        <td>A JSON array holding data about all movies. Example:
+          <pre>
+            <code>
+    [
+      {
+        "Genre": {
+            "Name": "Thriller",
+            "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience. Tension is created by delaying what the audience sees as inevitable, and is built through situations that are menacing or where escape seems impossible."
+        },
+        "Director": {
+            "Name": "Jonathan Demme",
+            "Birth": "1944",
+            "Death": "2017-01-01T00:00:00.000Z",
+            "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter."
+        },
+        "Actors": [],
+        "_id": "6211d04a9f2f4550f18cd102",
+        "Title": "The Silence of the Lambs",
+        "Description": "Jodie Foster stars as Clarice Starling, a top student at the FBI's training academy. Jack Crawford (Scott Glenn) wants Clarice to interview Dr. Hannibal Lecter (Anthony Hopkins), a brilliant psychiatrist who is also a violent psychopath, serving life behind bars for various acts of murder and cannibalism. Crawford believes that Lecter may have insight into a case and that Starling, as an attractive young woman, may be just the bait to draw him out.",
+        "ImagePath": "silenceofthelambs.png",
+        "Year": "1991",
+        "Featured": false
+      }, 
+      ...
+    ]
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Return data about a single movie by title to the user</td>
+        <td>/movies/[Movie]</td>
+        <td>GET</td>
+        <td>:Movie</td>
+        <td>None</td>
+        <td>A JSON object holding data about the selected movie containing description, genre, director and img URL. Example: 
+          <pre>
+            <code>
+  {
+    "Genre": {
+      "Name": "Thriller",
+      "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience. Tension is created by delaying what the audience sees as inevitable, and is built through situations that are menacing or where escape seems impossible."
+  },
+  "Director": {
+      "Name": "Christopher Nolan",
+      "Birth": "1970-07-30",
+      "Bio": "Christopher Edward Nolan CBE is a British-American film director, producer, and screenwriter. His films have grossed more than US$5 billion worldwide, and have garnered 11 Academy Awards from 36 nominations. Born and raised in London, Nolan developed an interest in filmmaking from a young age. Best known for his cerebral, often nonlinear, storytelling, acclaimed writer-director Christopher Nolan was born on July 30, 1970, in London, England. Over the course of 15 years of filmmaking, Nolan has gone from low-budget independent films to working on some of the biggest blockbusters ever made."
+  },
+  "Actors": [],
+  "_id": "6211d04a9f2f4550f18cd109",
+  "Title": "Inception",
+  "Description": "Dom Cobb (Leonardo DiCaprio) is a thief with the rare ability to enter people's dreams and steal their secrets from their subconscious. His skill has made him a hot commodity in the world of corporate espionage but has also cost him everything he loves. Cobb gets a chance at redemption when he is offered a seemingly impossible task: Plant an idea in someone's mind. If he succeeds, it will be the perfect crime, but a dangerous enemy anticipates Cobb's every move.",
+  "ImagePath": "inception.png",
+  "Year": "2010",
+  "Featured": false
+  }
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
+        <td>/movies/genres/[Genre]</td>
+        <td>GET</td>
+        <td>:Genre</td>
+        <td>None</td>
+        <td>A JSON object holding data about the selected genre. Example:
+          <pre>
+            <code>
+  { 
+    "Name": "Thriller",
+    "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience. Tension is created by delaying what the audience sees as inevitable, and is built through situations that are menacing or where escape seems impossible." 
+  }
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Return data about a director (bio, birth year, death year) by name</td>
+        <td>/movies/directors/[Name]</td>
+        <td>GET</td>
+        <td>:Name</td>
+        <td>None</td>
+        <td>A JSON object holding data about the selected director. Example: 
+          <pre>
+            <code>
+  { 
+    "Name": "Peter Jackson",
+    "Birth": "1961-10-31",
+    "Bio": "Sir Peter Robert Jackson ONZ KNZM is a New Zealand film director, screenwriter, and film producer. He is best known as the director, writer, and producer of the Lord of the Rings trilogy and the Hobbit trilogy, both of which are adapted from the novels of the same name by J. R. R. Tolkien."
+  }
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Allow new users to register</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>None</td>
+        <td>A JSON object holding data about the user to add. Example: 
+          <pre>
+            <code>
+  { 
+    "Username": "sasa",
+    "Password": "jamiroquai278", 
+    "Email": "lsass@gmail.com", 
+    "Birthday": "1994-12-09" 
+  }
+            </code>
+          </pre>
+        </td>
+        <td>A JSON object holding data about added user including ID. Example:
+          <pre>
+            <code>
+  { 
+    "Username": "sasa",
+    "Password": "jamiroquai278",
+    "Email": "lsass@gmail.com",
+    "Birthday": "1994-12-09T08:00:00.000Z",
+    "Favorites": [],
+    "_id": "621578d139fd30f231917490"
+  }
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Allow users to update their user info (username)</td>
+        <td>/users/[Username]</td>
+        <td>PUT</td>
+        <td>:Username</td>
+        <td> A JSON object holding the new username. Example:
+          <pre>
+            <code>
+  { 
+    "Username": "orange"
+  }
+            </code>
+          </pre>
+        </td>
+        <td>A JSON object with the updated user profile. Example:
+          <pre>
+            <code>
+  { 
+    "_id": "621578d139fd30f231917490",
+    "Username": "orange",
+    "Password": "jamiroquai278",
+    "Email": "lsass@gmail.com",
+    "Birthday": "1994-12-09T08:00:00.000Z",
+    "Favorites": []
+  }
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Allow users to add a movie to their list of favorites</td>
+        <td>/users/[Username]/movies/[MovieID]</td>
+        <td>POST</td>
+        <td>:Username, :MovieID</td>
+        <td>None</td>
+        <td>A JSON object with the updated user profile. Example:
+          <pre>
+            <code>
+  { 
+    "_id": "621578d139fd30f231917490",
+    "Username": "orange",
+    "Password": "jamiroquai278",
+    "Email": "lsass@gmail.com",
+    "Birthday": "1994-12-09T08:00:00.000Z",
+    "Favorites": [
+        "6211d04a9f2f4550f18cd109"
+    ]
+  }
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Allow users to remove a movie from their list of favorites</td>
+        <td>/users/[Username]/movies/[MovieID]</td>
+        <td>DELETE</td>
+        <td>:Username, :MovieID</td>
+        <td>None</td>
+        <td>A JSON object with the updated user profile. Example:
+          <pre>
+            <code>
+  { 
+    "_id": "621578d139fd30f231917490",
+    "Username": "orange",
+    "Password": "jamiroquai278",
+    "Email": "lsass@gmail.com",
+    "Birthday": "1994-12-09T08:00:00.000Z",
+    "Favorites": []
+  }
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Allow existing users to deregister</td>
+        <td>/users/[Username]</td>
+        <td>DELETE</td>
+        <td>:Username</td>
+        <td>None</td>
+        <td>A message indicating the user was deregistered</td>
+      </tr>
+    </tbody>
+    </table>
+    
+  
+  </body>
+
+</html>

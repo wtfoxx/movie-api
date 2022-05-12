@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let allowedOrigins = [
   'http://localhost:8080',
   'http://localhost:1234',
+  'http://localhost.4200',
   'http://test.com',
   'https://flexnit.netlify.app',
   'https://wtfoxx.github.io',

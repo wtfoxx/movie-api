@@ -4,6 +4,8 @@ This API is the backend part of the [Flexnit project](https://github.com/wtfoxx/
 
 **movie-api** is a **REST API** and includes **HTTP authentication** with **JWT passport authentication**, **bcrypt** password hashing, **express-validator** for server-side input validation and **CORS** data security. 
 
+Allowed localhost servers: 1234, 8080 and 4200
+
 ## Tools
 - **MongoDB**
 - **Mongoose**
